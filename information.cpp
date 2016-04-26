@@ -12,3 +12,13 @@ Information::~Information()
 {
     delete ui;
 }
+
+void Information::on_pushButton_clicked()
+{
+
+}
+
+void Information::on_pushButton_2_clicked()
+{
+
+}
