@@ -14,10 +14,20 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    information.cpp
+    information.cpp \
+    BusinessLogic/course.cpp \
+    BusinessLogic/department.cpp \
+    BusinessLogic/programme.cpp \
+    BusinessLogic/student.cpp \
+    datahandler.cpp
 
 HEADERS  += mainwindow.h \
-    information.h
+    information.h \
+    BusinessLogic/course.h \
+    BusinessLogic/department.h \
+    BusinessLogic/programme.h \
+    BusinessLogic/student.h \
+    datahandler.h
 
 FORMS    += mainwindow.ui \
     information.ui
