@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     BusinessLogic/department.cpp \
     BusinessLogic/programme.cpp \
     BusinessLogic/student.cpp \
-    datahandler.cpp
+    datahandler.cpp \
+    newdepartment.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
@@ -27,7 +28,10 @@ HEADERS  += mainwindow.h \
     BusinessLogic/department.h \
     BusinessLogic/programme.h \
     BusinessLogic/student.h \
-    datahandler.h
+    datahandler.h \
+    newdepartment.h
 
 FORMS    += mainwindow.ui \
-    information.ui
+    information.ui \
+    new_department.ui \
+    newdepartment.ui

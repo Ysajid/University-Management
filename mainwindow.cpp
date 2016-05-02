@@ -3,6 +3,8 @@
 #include "information.h"
 #include "ui_information.h"
 #include "BusinessLogic/student.h"
+#include "BusinessLogic/department.h"
+#include "newdepartment.h"
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -11,8 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QMap <int , Student> students;
-    QMap <int , Course> courses;
+//    QMap <int , Student> students;
+//    QMap <int , Course> courses;
     QMap <int , Department> departments;
 }
 
@@ -32,4 +34,10 @@ void MainWindow::on_pushButton_clicked()
 void MainWindow::on_pushButton_2_clicked()
 {
 
+}
+
+void MainWindow::on_actionDepartment_triggered()
+{
+    newDepartment dept;
+    dept.exec();
 }

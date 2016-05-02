@@ -6,6 +6,8 @@
 #include <BusinessLogic/course.h>
 #include <BusinessLogic/department.h>
 #include <QDataStream>
+#include <QMap>
+#include <QDialog>
 
 class DataHandler
 {
@@ -21,13 +23,17 @@ class DataHandler
     QFile *programmeFile;
     QFile *generalFile;
 
-    QMap <int , *Student> students;
-    QMap <int , *Course> courses;
-    QMap <int , *Department> departments;
+//    QMap < QString , Student *> students;
+//    QMap <QString , Course*> courses;
+    QMap <QString , Department*> departments;
 
 public:
     DataHandler();
-    DataHandler(QMap <int, *Student>&, QMap <int, *Course>&, QMap <int , *Department>&);
+    DataHandler(QMap <QString , Department*>&);
+
+    static DataHandler data;
+
+//    QDataStream &operator >> (QDataStream &in , Department &dept);
     void loadInfos();
     void saveInfos();
 };

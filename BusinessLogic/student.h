@@ -1,39 +1,40 @@
-#ifndef STUDENT_H
-#define STUDENT_H
-#include <string>
-#include <QString>
-#include <QList>
-#include <BusinessLogic/department.h>
-#include <BusinessLogic/course.h>
+//#ifndef STUDENT_H
+//#define STUDENT_H
+//#include <string>
+//#include <QString>
+//#include <QList>
+//#include <BusinessLogic/department.h>
+//#include <BusinessLogic/course.h>
 
 
-using namespace std;
+//using namespace std;
 
-class Student
-{
-    int id;
-    string name;
-    string address;
+//class Student
+//{
+//    QString id;
+//    QString name;
+//    QString address;
 
-    int course_cnt;
-    QList <Course> courses_taken;
-    Department *dept;
+//    int course_cnt;
+//    QList <Course*> courses_taken;
+//    Department *dept;
 
-public:
-    Student();
-    int getId(){return id;}
-    void setID(int id){this->id = id;}
-    QString getName(){return QString::fromStdString(name);}
+//public:
+//    Student();
+//    Student(QString id, QString name , QString address);
+//    QString getId(){return id;}
+//    void setID(int id){this->id = id;}
+//    QString getName(){return name;}
 
-    Department* getDepartment(){return dept;}
-    QList <Course> getCourses() {return courses_taken;}
+//    Department* getDepartment(){return dept;}
+//    QList <Course*> getCourses() {return courses_taken;}
 
-    void setDepartment(Department &dept){ this->dept = &dept;}
-    void addCourse(Course &newCourse) {
-        courses_taken.append(newCourse);
-    }
-    friend QDataStream &operator >> (QDataStream &in, const Student &student);
+//    void setDepartment(Department &dept){ this->dept = &dept;}
+//    void addCourse(Course &newCourse) {
+//        courses_taken.append(&newCourse);
+//    }
+//    friend QDataStream &operator >> (QDataStream &in, Student &student);
 
-};
+//};
 
-#endif // STUDENT_H
+//#endif // STUDENT_H

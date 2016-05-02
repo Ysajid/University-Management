@@ -11,9 +11,8 @@ DataHandler::DataHandler()
     loadInfos();
 }
 
-DataHandler::DataHandler(QMap<int, *Student> &students,
-                         QMap<int, *Course> &courses,
-                         QMap<int, *Department> &departments){
+DataHandler::DataHandler(QMap<QString, Department*> &departments){
+
     student_fileName = "student.txt";
     dept_fileName = "department.txt";
     courses_fileName = "courses.txt";
@@ -22,39 +21,44 @@ DataHandler::DataHandler(QMap<int, *Student> &students,
 
     loadInfos();
 
-    this->students = students;
-    this->courses = courses;
+//    this->students = students;
+//    this->courses = courses;
     this->departments = departments;
 }
 
 void DataHandler::loadInfos()
 {
-    studentFile = new QFile(student_fileName);
-    studentFile->open(QFile::ReadWrite);
+    deptFile = new QFile(dept_fileName);
+    deptFile->open(QFile::ReadWrite);
 
 //    if(!studentFile->open(QFile::ReadWrite || QFile::Text)){
 //        return;
 //    }
 
-    QDataStream in(studentFile);
+    QDataStream in(deptFile);
     while(!in.atEnd()){
-        Student student;
-        in >> student;
+        Department dept;
+        in >> dept.getId() >> dept.getName() >> dept.getBuilding() >> dept.getBudget();
+        departments[dept.getId()] = &dept;
     }
-    studentFile->close();
+    deptFile->close();
 
 }
 
-//QDataStream &operator<<(QDataStream &out, const Student &student)
+//QDataStream &operator << (QDataStream &out, const Student &student)
 //{
 //    out << student.getId() << student.getName();
 //        << student.getDepartment()->dept_id;
 //    return out;
 //}
 
-QDataStream &operator >> (QDataStream &in, const Student &student)
-{
-    in >> student.id >> student.name;
-        >> student.dept->dept_id;
-    return out;
-}
+//QDataStream &operator >> (Department &dept)
+//{
+//    QString id, name, building, budget;
+//    this >> id >> name >> building >> budget;
+//    Department dept2(id,name,building,budget);
+//    dept = dept2;
+//    return in;
+//}
+
+
