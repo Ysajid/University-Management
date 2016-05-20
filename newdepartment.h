@@ -1,13 +1,13 @@
 #ifndef NEWDEPARTMENT_H
 #define NEWDEPARTMENT_H
 
-#include <QDialog>
+#include <QInputDialog>
 
 namespace Ui {
 class newDepartment;
 }
 
-class newDepartment : public QDialog
+class newDepartment : public QInputDialog
 {
     Q_OBJECT
 

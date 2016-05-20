@@ -1,48 +1,58 @@
 #include "datahandler.h"
 #include "BusinessLogic/student.h"
+#include <QDebug>
+
+
 DataHandler::DataHandler()
 {
     student_fileName = "student.txt";
-    dept_fileName = "department.txt";
+    dept_fileName = "/mnt/sda7/workshop/qt Projects/UniversityManagement/department.txt";
     courses_fileName = "courses.txt";
     programme_fileName = "programme.txt";
     generalInfo_fileName = "general.txt";
+
+//    departments = new QAbstractListModel();
+
+    dept_list = new QStringList;
 
     loadInfos();
 }
 
-DataHandler::DataHandler(QMap<QString, Department*> &departments){
+//DataHandler::DataHandler(QMap<QString, Department*> &departments){
 
-    student_fileName = "student.txt";
-    dept_fileName = "department.txt";
-    courses_fileName = "courses.txt";
-    programme_fileName = "programme.txt";
-    generalInfo_fileName = "general.txt";
+//    student_fileName = "student.txt";
+//    dept_fileName = "department.txt";
+//    courses_fileName = "courses.txt";
+//    programme_fileName = "programme.txt";
+//    generalInfo_fileName = "general.txt";
 
-    loadInfos();
+//    loadInfos();
 
 //    this->students = students;
 //    this->courses = courses;
-    this->departments = departments;
-}
+//    this->departments = departments;
+//}
 
 void DataHandler::loadInfos()
 {
     deptFile = new QFile(dept_fileName);
-    deptFile->open(QFile::ReadWrite);
+    if(deptFile->open(QFile::ReadWrite | QFile::Text))qDebug() << deptFile->fileName();
 
 //    if(!studentFile->open(QFile::ReadWrite || QFile::Text)){
 //        return;
 //    }
 
-    QDataStream in(deptFile);
+    QTextStream in(deptFile);
     while(!in.atEnd()){
         Department dept;
         in >> dept.getId() >> dept.getName() >> dept.getBuilding() >> dept.getBudget();
-        departments[dept.getId()] = &dept;
+        qDebug() << dept.getId();
+        *dept_list << dept.getName();
+        departments_map[dept.getId()] = &dept;
     }
+    departments = new QStringListModel();
+    departments->setStringList(*dept_list);
     deptFile->close();
-
 }
 
 //QDataStream &operator << (QDataStream &out, const Student &student)

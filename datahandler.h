@@ -5,31 +5,37 @@
 #include <BusinessLogic/student.h>
 #include <BusinessLogic/course.h>
 #include <BusinessLogic/department.h>
-#include <QDataStream>
+#include <QTextStream>
 #include <QMap>
 #include <QDialog>
+#include <QStringListModel>
 
 class DataHandler
 {
+
+public:
+
     QString student_fileName;
     QString dept_fileName;
     QString courses_fileName;
     QString programme_fileName;
     QString generalInfo_fileName;
 
-    QFile *studentFile;
-    QFile *deptFile;
-    QFile *coursesFile;
-    QFile *programmeFile;
-    QFile *generalFile;
+    static QStringListModel *departments;
+
+    static QFile *studentFile;
+    static QFile *deptFile;
+    static QFile *coursesFile;
+    static QFile *programmeFile;
+    static QFile *generalFile;
+
+    QStringList *dept_list;
 
 //    QMap < QString , Student *> students;
 //    QMap <QString , Course*> courses;
-    QMap <QString , Department*> departments;
+    static QMap <QString , Department*> departments_map;
 
-public:
     DataHandler();
-    DataHandler(QMap <QString , Department*>&);
 
     static DataHandler data;
 

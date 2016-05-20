@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     BusinessLogic/programme.cpp \
     BusinessLogic/student.cpp \
     datahandler.cpp \
-    newdepartment.cpp
+    newdepartment.cpp \
+    BusinessLogic/authorization.cpp \
+    loginscreen.cpp \
+    student_registration.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
@@ -29,9 +32,14 @@ HEADERS  += mainwindow.h \
     BusinessLogic/programme.h \
     BusinessLogic/student.h \
     datahandler.h \
-    newdepartment.h
+    newdepartment.h \
+    BusinessLogic/authorization.h \
+    loginscreen.h \
+    student_registration.h
 
 FORMS    += mainwindow.ui \
     information.ui \
     new_department.ui \
-    newdepartment.ui
+    newdepartment.ui \
+    loginscreen.ui \
+    student_registration.ui

@@ -2,7 +2,7 @@
 #include "ui_newdepartment.h"
 
 newDepartment::newDepartment(QWidget *parent) :
-    QDialog(parent),
+    QInputDialog(parent),
     ui(new Ui::newDepartment)
 {
     ui->setupUi(this);
@@ -15,5 +15,5 @@ newDepartment::~newDepartment()
 
 void newDepartment::on_buttonBox_accepted()
 {
-
+//    ui->name->get
 }
