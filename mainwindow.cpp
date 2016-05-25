@@ -11,17 +11,35 @@
 #include "student_registration.h"
 #include "datahandler.h"
 
+QMap <QString , Department> DataHandler::departments;
+QMap <QString , Student> DataHandler::students;
 
-QFile *DataHandler::deptFile;
-QMap <QString , Department*> DataHandler::departments_map;
-QStringListModel *DataHandler::departments;
+ QStringListModel DataHandler::departments_list_model;
+ QStringListModel DataHandler::students_list_model;
+ QStringListModel DataHandler::courses_list_model;
+ QStringListModel DataHandler::teachers_list_model;
+
+
+ QFile *DataHandler::studentFile;
+ QFile *DataHandler::deptFile;
+ QFile *DataHandler::coursesFile;
+ QFile *DataHandler::programmeFile;
+ QFile *DataHandler::generalFile;
+
+ QStringList DataHandler::dept_list;
+ QStringList DataHandler::student_list;
+ QStringList DataHandler::teacher_list;
+ QStringList DataHandler::course_list;
+
+
+DataHandler data(1);
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
 
-    DataHandler data;
 
     LoginScreen login(this);
     login.exec();
@@ -50,7 +68,7 @@ void MainWindow::on_pushButton_clicked()
     //show information page
     Information info;
     info.exec();
-    qDebug() << "done";
+//    qDebug() << "done";
 }
 
 void MainWindow::on_pushButton_2_clicked()

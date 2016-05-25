@@ -1,32 +1,41 @@
-//#ifndef STUDENT_H
-//#define STUDENT_H
-//#include <string>
-//#include <QString>
-//#include <QList>
-//#include <BusinessLogic/department.h>
-//#include <BusinessLogic/course.h>
+#ifndef STUDENT_H
+#define STUDENT_H
+#include <string>
+#include <QString>
+#include <QStringList>
+#include <BusinessLogic/department.h>
+#include <BusinessLogic/course.h>
 
 
-//using namespace std;
+using namespace std;
 
-//class Student
-//{
-//    QString id;
-//    QString name;
-//    QString address;
+class Student
+{
+    QString id;
+    QString name;
+    QString father_name;
+    QString address;
 
-//    int course_cnt;
-//    QList <Course*> courses_taken;
-//    Department *dept;
+    int course_cnt;
+    int dept_id;
+    int year;
+    int semester;
+    QStringList courses_taken;
 
-//public:
-//    Student();
-//    Student(QString id, QString name , QString address);
-//    QString getId(){return id;}
-//    void setID(int id){this->id = id;}
-//    QString getName(){return name;}
+public:
+    Student();
+    Student(QString id, QString name ,QString father_name, QString address, int dept_id, int year, int semester);
+    QString &getId(){return id;}
+    QString &getName(){return name;}
+    QString &getFatherName(){return father_name;}
+    QString &getAddress(){return address;}
+    int &getDept(){return dept_id;}
+    int &getSemester(){return semester;}
+    int &getYear(){return year;}
+    int &getCourseCnt(){return course_cnt;}
 
-//    Department* getDepartment(){return dept;}
+
+//    Department& getDepartment(){return dept;}
 //    QList <Course*> getCourses() {return courses_taken;}
 
 //    void setDepartment(Department &dept){ this->dept = &dept;}
@@ -35,6 +44,6 @@
 //    }
 //    friend QDataStream &operator >> (QDataStream &in, Student &student);
 
-//};
+};
 
-//#endif // STUDENT_H
+#endif // STUDENT_H

@@ -1,19 +1,17 @@
 #include "authorization.h"
-#include <QDebug>
-#include <QDataStream>
-#include <QCryptographicHash>
+#include "datahandler.h"
 
 Authorization::Authorization()
 {
+    authFileName.append(HOME_DIR) += "passcodes.txt";
 }
 
 bool Authorization::checkValidity(QString name, QString password)
 {
-    QString authFileName = "passcodes.text";
-    QFile *authFile = new QFile(authFileName);
+    authFile = new QFile(authFileName);
     authFile->open(QFile::ReadOnly);
 
-    QDataStream in(authFile);
+    QTextStream in(authFile);
 
     while(!in.atEnd()){
         QString checkName, checkPass;
@@ -24,24 +22,28 @@ bool Authorization::checkValidity(QString name, QString password)
             else return false;
         }
     }
+    authFile->close();
     return false;
 }
 
 bool Authorization::checkUserValidity(QString name)
 {
-    QString authFileName = "passcodes.text";
+    qDebug() << authFileName;
     QFile *authFile = new QFile(authFileName);
-    authFile->open(QFile::ReadOnly);
+    authFile->open(QFile::ReadOnly | QFile::Text);
 
-    QDataStream in(authFile);
+    QTextStream in(authFile);
 
     while(!in.atEnd()){
         QString checkName, checkPass;
-        in >> checkName >> checkPass;
+        in >> checkName >>  checkPass;
+        qDebug() << checkName;
         if(checkName == name){
+            authFile->close();
             return true;
         }
     }
+    authFile->close();
     return false;
 }
 

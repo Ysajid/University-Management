@@ -23,11 +23,13 @@ void LoginScreen::on_login_clicked()
     if(Authorization().checkUserValidity(name)){
         if(Authorization().checkValidity(name,pass)){
             qDebug() << "true";
-            result = LOGGED_IN;
-            emit finished(1);
+            if(name == ADMIN) result = LOGGED_IN_ADMIN;
+            else result = LOGGED_IN;
+            id = name;
+            close();
         }
-        else ui->name->setText("wrong password");
-    } else ui->name->setText("user name invalid");
+        else QMessageBox::critical(this,"Login Faild", "WRONG PASSWORD");
+    } else QMessageBox::critical(this,"Login Faild", "USER NAME INVALID");
 }
 
 void LoginScreen::on_cancel_clicked()

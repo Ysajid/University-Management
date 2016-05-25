@@ -1,4 +1,0 @@
-1 MCE 1st_Academic_Building 1000000
-2 MCE 2nd_Academic_Building 1000000
-3 MCE 2nd_Academic_Building 1000000
-4 CSE 2nd_Academic_Building 1000000

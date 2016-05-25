@@ -2,16 +2,19 @@
 #define AUTHORIZATION_H
 #include <QString>
 #include <QFile>
+#include <QDebug>
+#include <QTextStream>
+#include <QCryptographicHash>
 
 class Authorization
 {
-//    QString authFileName = "passcodes.text";
-//    QFile authFile;
+    QFile* authFile;
 
 public:
+    QString authFileName;
     Authorization();
-    static bool checkValidity(QString name , QString password);
-    static bool checkUserValidity(QString name);
+    bool checkValidity(QString name , QString password);
+    bool checkUserValidity(QString name);
     QString encodePassword(QString);
 
 };

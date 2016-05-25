@@ -1,0 +1,4 @@
+1 MCE 1st 1000
+2 EEE 1st 1000
+3 CEE 1st 1000
+4 CSE 1st 1000
