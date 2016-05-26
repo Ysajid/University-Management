@@ -3,47 +3,34 @@
 
 Authorization::Authorization()
 {
-    authFileName.append(HOME_DIR) += "passcodes.txt";
+    password_table = "passwords";
 }
 
 bool Authorization::checkValidity(QString name, QString password)
 {
-    authFile = new QFile(authFileName);
-    authFile->open(QFile::ReadOnly);
+    QSqlQuery query("select * from "+ password_table +";");
 
-    QTextStream in(authFile);
-
-    while(!in.atEnd()){
-        QString checkName, checkPass;
-        in >> checkName >> checkPass;
-        if(checkName == name){
+    while(query.next()){
+        if(query.value(0).toString() == name){
             Authorization a;
-            if(checkPass == a.encodePassword(password)) return true;
+            if(query.value(1).toString() == a.encodePassword(password)) return true;
             else return false;
         }
     }
-    authFile->close();
+//    authFile->close();
     return false;
 }
 
 bool Authorization::checkUserValidity(QString name)
 {
-    qDebug() << authFileName;
-    QFile *authFile = new QFile(authFileName);
-    authFile->open(QFile::ReadOnly | QFile::Text);
 
-    QTextStream in(authFile);
+    QSqlQuery query("select id from "+ password_table +";");
 
-    while(!in.atEnd()){
-        QString checkName, checkPass;
-        in >> checkName >>  checkPass;
-        qDebug() << checkName;
-        if(checkName == name){
-            authFile->close();
+    while(query.next()){
+        if(query.value(0).toString() == name){
             return true;
         }
     }
-    authFile->close();
     return false;
 }
 

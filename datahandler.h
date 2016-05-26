@@ -58,6 +58,7 @@ public:
 //    QMap <QString , Course*> courses;
     static QMap <int , Department> departments;
     static QMap <QString , Student> students;
+    static QMap <QString , Course> courses;
     static QMap <int , Teacher> teachers;
 //    static QMap <QString , Department> courses;
 //    static QMap <QString , Department> teachers;
@@ -75,7 +76,7 @@ public:
 
     bool addNewStudent(int int_id ,QString name, QString father_name , QString address , int dept_id, int year,int semester, QString password);
     void addNewDepartment(QString name, QString building, int budget);
-    void addNewTeacher(int id, QString name, QString designation, int dept_id, int salary);
+    void addNewTeacher(QString name, QString designation, int dept_id, int salary);
     void addNewCourse(QString id, QString name, int dept_id, int semester, double credit);
 
 

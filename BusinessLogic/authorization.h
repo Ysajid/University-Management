@@ -5,10 +5,11 @@
 #include <QDebug>
 #include <QTextStream>
 #include <QCryptographicHash>
+#include <QSqlQuery>
 
 class Authorization
 {
-    QFile* authFile;
+    QString password_table;
 
 public:
     QString authFileName;

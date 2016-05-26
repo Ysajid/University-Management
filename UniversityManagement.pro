@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     teachers_tab.cpp \
     BusinessLogic/teacher.cpp \
     courses_tab.cpp \
-    new_course.cpp
+    new_course.cpp \
+    studentdash.cpp \
+    new_teacher.cpp
 
 HEADERS  += mainwindow.h \
     information.h \
@@ -47,7 +49,9 @@ HEADERS  += mainwindow.h \
     courses_tab.h \
     teachers_tab.h \
     BusinessLogic/teacher.h \
-    new_course.h
+    new_course.h \
+    studentdash.h \
+    new_teacher.h
 
 FORMS    += mainwindow.ui \
     information.ui \
@@ -59,4 +63,6 @@ FORMS    += mainwindow.ui \
     department_tab.ui \
     courses_tab.ui \
     teachers_tab.ui \
-    new_course.ui
+    new_course.ui \
+    studentdash.ui \
+    new_teacher.ui

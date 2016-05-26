@@ -12,9 +12,19 @@ teachers_tab::teachers_tab(QWidget *parent) :
     model->select();
 
     ui->tableView->setModel(model);
+
 }
 
 teachers_tab::~teachers_tab()
 {
     delete ui;
+}
+
+void teachers_tab::on_pushButton_clicked()
+{
+    new_teacher teacher;
+    teacher.exec();
+
+    model->select();
+    ui->tableView->setModel(model);
 }

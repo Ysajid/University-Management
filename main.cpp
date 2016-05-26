@@ -14,12 +14,14 @@
 #include "loginscreen.h"
 #include "datahandler.h"
 #include <QApplication>
+#include "studentdash.h"
 
 
 
 QMap <int , Department> DataHandler::departments;
 QMap <QString , Student> DataHandler::students;
 QMap <int , Teacher> DataHandler::teachers;
+QMap <QString , Course> DataHandler::courses;
 
  QStringListModel DataHandler::departments_list_model;
  QStringListModel DataHandler::students_list_model;
@@ -42,16 +44,17 @@ QMap <int , Teacher> DataHandler::teachers;
 
  void operator <<(Department &dept , QSqlQuery query)
  {
-//     dept.dept_id = query.value(0).toInt();
-     dept.dept_name = query.value(0).toString();
-     dept.building = query.value(1).toString();
-     dept.budget = query.value(2).toInt();
+     dept.dept_id = query.value(0).toInt();
+     dept.dept_name = query.value(1).toString();
+     dept.building = query.value(2).toString();
+     dept.budget = query.value(3).toInt();
  }
 
  void operator >>(Department &dept , int notused)
  {
      QSqlQuery query;
      query.exec("insert into "+DataHandler().dept_table + " values ("
+                +QString::number(DataHandler().departments.size() + 1) + ","
                 + "'" + dept.dept_name + "',"
                 + "'" + dept.building + "',"
                 + QString::number(dept.budget)
@@ -88,16 +91,18 @@ void operator >> (Student &student , int notused)
 
 void operator << (Teacher &teacher, QSqlQuery query)
 {
-    teacher.name = query.value(0).toString();
-    teacher.designation = query.value(1).toString();
-    teacher.dept_id = query.value(2).toInt();
-    teacher.salary = query.value(3).toInt();
+    teacher.id = query.value(0).toInt();
+    teacher.name = query.value(1).toString();
+    teacher.designation = query.value(2).toString();
+    teacher.dept_id = query.value(3).toInt();
+    teacher.salary = query.value(4).toInt();
 }
 
 void operator >> (Teacher &teacher , int notused)
 {
     QSqlQuery query;
     query.exec("insert into "+ DataHandler().teachers_table + " values ("
+               +QString::number(teacher.id) + ","
                + "'" + teacher.name + "',"
                + "'" + teacher.designation + "',"
                +QString::number(teacher.dept_id) + ","
@@ -152,8 +157,8 @@ int main(int argc, char *argv[])
     break;
     case LOGGED_IN :
         qDebug() << "user logged in";
-        StudentDashboard dashboard;
-        dashboard.show();
+        StudentDash dashboard(QString(login.id));
+        dashboard.exec();
     break;
     }
 

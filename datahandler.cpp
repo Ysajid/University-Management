@@ -74,6 +74,33 @@ void DataHandler::loadData()
 //        *in << student.getName();
         students[student.getId()] = student;
     }
+
+    query =  QSqlQuery("select * from "+courses_table +";");
+
+    while(query.next()){
+        Course course;
+
+        course << query;
+
+        qDebug() << course.getId();
+        if(course.getId() == "")continue;
+//        *in << student.getName();
+        courses[course.getId()] = course;
+    }
+
+    query =  QSqlQuery("select * from "+teachers_table +";");
+
+    while(query.next()){
+        Teacher teacher;
+
+        teacher << query;
+
+        qDebug() << teacher.getId();
+        if(teacher.getId() == 0)continue;
+//        *in << student.getName();
+        teachers[teacher.getId()] = teacher;
+    }
+
 //    students_list_model = new QStringListModel();
 
 //    students_list_model.setStringList(student_list);
@@ -81,44 +108,6 @@ void DataHandler::loadData()
 
 //    delete in;
 }
-
-//void DataHandler::saveData()
-//{
-//    deptFile->open(QFile::WriteOnly);
-//    QTextStream *out;
-//    out = new QTextStream(deptFile);
-//    QList<QString> keys = departments.keys();
-//    qDebug() << "length = " << keys.length();
-//    foreach(QString i , keys){
-////        QString i = keys[j];
-//        *out << departments[i].getId() << " "
-//            << departments[i].getName().replace(" ","_") << " "
-//            << departments[i].getBuilding().replace(" ","_") << " "
-//            << departments[i].getBudget() << "\n";
-//        qDebug() << departments[i].getId() << departments[i].getName() << departments[i].getBuilding() << departments[i].getBudget();
-//    }
-//    deptFile->close();
-
-
-//    studentFile->open(QFile::WriteOnly | QFile::Text);
-//    out = new QTextStream(studentFile);
-//    keys = students.keys();
-//    qDebug() << "length = " << keys.length();
-//    foreach(QString i , keys){
-////        QString i = keys[j];
-//        *out << students[i].getId() << " "
-//            << students[i].getName().replace(" ","_") << " "
-//            << students[i].getFatherName().replace(" ","_") << " "
-//            << students[i].getAddress().replace(" ","_") << " "
-//            << students[i].getDept() << " "
-//            << students[i].getCourseCnt() << " "
-//            << students[i].getSemester() << " "
-//            << students[i].getYear() << endl;
-//    }
-//    studentFile->close();
-
-//    delete out;
-//}
 
 bool DataHandler::addNewStudent(int int_id ,
                                 QString name,
@@ -180,8 +169,9 @@ void DataHandler::addNewDepartment(QString name, QString building, int budget)
     departments[dept.getId()] = dept;
 }
 
-void DataHandler::addNewTeacher(int id, QString name, QString designation, int dept_id, int salary)
+void DataHandler::addNewTeacher(QString name, QString designation, int dept_id, int salary)
 {
+    int id = teachers.size() + 1;
     Teacher t(id, name, designation, dept_id, salary);
 
     t >> 0;

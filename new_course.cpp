@@ -53,7 +53,19 @@ new_course::~new_course()
     delete ui;
 }
 
-void new_course::on_buttonBox_accepted()
+//void new_course::on_buttonBox_accepted()
+//{
+
+//    }
+//}
+
+
+
+
+
+
+
+void new_course::on_pushButton_2_clicked()
 {
     name = ui->name->text();
     dept_id = ui->dept->currentIndex() + 1;
@@ -69,11 +81,11 @@ void new_course::on_buttonBox_accepted()
         else id.append(QString::number(idNo));
 
         DataHandler().addNewCourse(id,name,dept_id,semester,credit);
+        close();
     }
 }
 
-
-
-
-
-
+void new_course::on_pushButton_clicked()
+{
+    close();
+}

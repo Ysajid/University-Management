@@ -12,6 +12,10 @@ students_tab::students_tab(QWidget *parent) :
     QSqlTableModel *model;
 
     model = new QSqlTableModel(this);
+//    model->setTable("select id , students.name , father_name, address , departments.name , semester , year from "
+//                    +DataHandler().dept_table +"," +DataHandler().students_table
+//                    +"where departments.rowid = dept_id;");
+
     model->setTable(DataHandler().students_table);
     model->select();
 
