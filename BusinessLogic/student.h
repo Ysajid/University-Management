@@ -34,6 +34,9 @@ public:
     int &getYear(){return year;}
     int &getCourseCnt(){return course_cnt;}
 
+    friend void operator << (Student &std , QSqlQuery query);
+    friend void operator >> (Student &std , int notused);
+
 
 //    Department& getDepartment(){return dept;}
 //    QList <Course*> getCourses() {return courses_taken;}

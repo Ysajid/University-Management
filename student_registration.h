@@ -20,6 +20,7 @@ class Student_Registration : public QDialog, DataHandler
     int year;
     int semester;
     QString password;
+    QString password2;
     QAbstractListModel *model;
 
 public:

@@ -8,7 +8,7 @@
 #define LOGGED_IN 1
 #define LOGGED_IN_ADMIN 4
 #define CANCELED 3
-#define ADMIN admin
+#define ADMIN "admin"
 
 namespace Ui {
 class LoginScreen;

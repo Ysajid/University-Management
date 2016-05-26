@@ -63,6 +63,7 @@ void Student_Registration::on_done_clicked()
     year = ui->year->currentText().toInt();
     semester = ui->semester->currentText().toInt();
     password = ui->password->text();
+    password2 = ui->password_2->text();
 
     if(name == NULL || father_name == NULL || address == NULL || department_id == 0 || year == 0 || semester == 0 || password == NULL){
         QMessageBox::information(this,"","All items are not set");
@@ -70,10 +71,13 @@ void Student_Registration::on_done_clicked()
     else {
         qDebug() << "new student";
 
-        if( DataHandler().addNewStudent(ui->ids->currentIndex() + 1, name, father_name, address, department_id, year,semester, password)) {
-            close();
+        if(password != password2) QMessageBox::warning(this,"","Passwords dont match");
+        else {
+            if( DataHandler().addNewStudent(ui->ids->currentIndex() + 1, name, father_name, address, department_id, year,semester, password)) {
+                close();
+            }
+            else  QMessageBox::information(this,"","Student already exists");
         }
-        else  QMessageBox::information(this,"","Student already exists");
     }
 }
 

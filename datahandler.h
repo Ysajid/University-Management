@@ -10,19 +10,26 @@
 #include <QMap>
 #include <QDialog>
 #include <QStringListModel>
+#include <QStandardItemModel>
+#include <QtSql>
+#include <QMessageBox>
 
 #define HOME_DIR "/mnt/sda7/workshop/qt Projects/UniversityManagement/Data/"
+#define DB_NAME "university.db"
 
 class DataHandler
 {
+
+    QSqlDatabase db;
 
 public:
 
     int type;
 
-    QString student_fileName;
-    QString dept_fileName;
-    QString courses_fileName;
+    QString student_column;
+    QString dept_table;
+    QString course_column;
+    QString password_table;
     QString programme_fileName;
     QString generalInfo_fileName;
 
@@ -30,6 +37,8 @@ public:
     static QStringListModel students_list_model;
     static QStringListModel courses_list_model;
     static QStringListModel teachers_list_model;
+
+    static QStandardItemModel *students_model;
 
     static QFile *studentFile;
     static QFile *deptFile;
@@ -45,7 +54,7 @@ public:
 
 //    QMap < QString , Student *> students;
 //    QMap <QString , Course*> courses;
-    static QMap <QString , Department> departments;
+    static QMap <int , Department> departments;
     static QMap <QString , Student> students;
 //    static QMap <QString , Department> courses;
 //    static QMap <QString , Department> teachers;
@@ -62,6 +71,7 @@ public:
     void saveData();
 
     bool addNewStudent(int int_id ,QString name, QString father_name , QString address , int dept_id, int year,int semester, QString password);
+
 };
 
 #endif // DATAHANDLER_H

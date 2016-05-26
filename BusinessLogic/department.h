@@ -1,28 +1,32 @@
 #ifndef DEPARTMENT_H
 #define DEPARTMENT_H
 #include <QString>
+#include <QSqlQuery>
 #include <QList>
-
+#include <QVariant>
 
 using namespace std;
 class Department
 {
-    QString dept_id;
+    int dept_id;
     QString dept_name;
     QString building;
-    QString budget;
+    int budget;
 
 public:
     Department();
-    Department(QString id, QString name, QString building, QString budget);
+    Department(int id, QString name, QString building, int budget);
 
     QList <QString> course_ids;
     QList <QString> teacher_ids;
 
-    QString &getId(){return dept_id;}
+    int &getId(){return dept_id;}
     QString &getName(){return dept_name;}
     QString &getBuilding() {return building;}
-    QString &getBudget() {return budget;}
+    int &getBudget() {return budget;}
+
+    friend void operator << (Department &dept , QSqlQuery query);
+    friend void operator >> (Department &dept , int notused);
 };
 
 #endif // DEPARTMENT_H

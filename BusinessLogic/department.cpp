@@ -6,10 +6,11 @@ Department::Department()
 }
 
 
-Department::Department(QString id, QString name, QString building, QString budget)
+Department::Department(int id, QString name, QString building, int budget)
 {
     this->dept_id = id;
     this->dept_name = name;
     this->building = building;
     this->budget = budget;
 }
+
