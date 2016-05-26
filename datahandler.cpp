@@ -6,9 +6,10 @@ DataHandler::DataHandler(int type)
 {
     this->type = type;
 
-    student_column ="students";
+    students_table ="students";
     dept_table = "departments";
-    course_column = "courses";
+    courses_table = "courses";
+    teachers_table = "teachers";
     password_table = "passwords";
     generalInfo_fileName.append(HOME_DIR) += "general.txt";
 
@@ -61,7 +62,7 @@ void DataHandler::loadData()
     departments_list_model.setStringList(dept_list);
 //    deptFile->close();
 
-    query =  QSqlQuery("select * from "+student_column +";");
+    query =  QSqlQuery("select * from "+students_table +";");
 
     while(query.next()){
         Student student;
@@ -144,7 +145,7 @@ bool DataHandler::addNewStudent(int int_id ,
         query.exec("insert into "+password_table +" values('"+
                    id +"','" + Authorization().encodePassword(password)+"')");
 
-        query.exec("insert into "+ student_column + " values ("
+        query.exec("insert into "+ students_table + " values ("
                    + "'" + student.getId() + "',"
                    + "'" + student.getName() + "',"
                    + "'" + student.getFatherName() + "',"
@@ -155,7 +156,7 @@ bool DataHandler::addNewStudent(int int_id ,
                    +QString::number(student.getYear())
                    + ");");
 
-        qDebug() << "insert into "+ student_column + " values ("
+        qDebug() << "insert into "+ students_table + " values ("
                     + "'" + student.getId() + "',"
                     + "'" + student.getName() + "',"
                     + "'" + student.getFatherName() + "',"
@@ -171,45 +172,33 @@ bool DataHandler::addNewStudent(int int_id ,
     return true;
 }
 
+void DataHandler::addNewDepartment(QString name, QString building, int budget)
+{
+    Department dept(departments.size() + 1, name, building , budget);
+
+    dept >> 0;
+    departments[dept.getId()] = dept;
+}
+
+void DataHandler::addNewTeacher(int id, QString name, QString designation, int dept_id, int salary)
+{
+    Teacher t(id, name, designation, dept_id, salary);
+
+    t >> 0;
+    teachers[t.getId()] = t;
+}
+
+void DataHandler::addNewCourse(QString id, QString name, int dept_id, int semester,double credit)
+{
+    Course course(id, name, dept_id, semester, credit);
+
+    course >> 0;
+}
+
 
 DataHandler::~DataHandler()
 {
-    qDebug() << "asd";
+//    qDebug() << "asd";
 //    if(type != 0) saveData();
     db.close();
 }
-
-//void Department::operator <<(QSqlQuery query)
-//{
-//    dept.getId() = query.value(0).toString();
-//    dept.getName() = query.value(1).toString();
-//    dept.getBuilding() = query.value(2).toString();
-//    dept.getBudget() = query.value(4).toInt();
-//}
-
-//void Department::operator >>(QSqlQuery query)
-//{
-//    query.exec("insert into "+ dept_table + "values ("
-//               + dept.getId()
-//               +"'" + dept.getName() + "'"
-//               +"'" + dept.getBuilding() + "'"
-//               +dept.getBudget()
-//               +");");
-//}
-
-
-//QDataStream &operator << (QDataStream &out, const Student &student)
-//{
-//    out << student.getId() << student.getName();
-//        << student.getDepartment()->dept_id;
-//    return out;
-//}
-
-//QDataStream &operator >> (Department &dept)
-//{
-//    QString id, name, building, budget;
-//    this >> id >> name >> building >> budget;
-//    Department dept2(id,name,building,budget);
-//    dept = dept2;
-//    return in;
-//}

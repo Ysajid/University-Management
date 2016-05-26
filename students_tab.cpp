@@ -12,7 +12,7 @@ students_tab::students_tab(QWidget *parent) :
     QSqlTableModel *model;
 
     model = new QSqlTableModel(this);
-    model->setTable(DataHandler().student_column);
+    model->setTable(DataHandler().students_table);
     model->select();
 
     ui->tableView->setModel(model);

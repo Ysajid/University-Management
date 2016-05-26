@@ -3,6 +3,8 @@
 #include "datahandler.h"
 #include "students_tab.h"
 #include "department_tab.h"
+#include "teachers_tab.h"
+#include "courses_tab.h"
 #include <QTabWidget>
 #include <QTableView>
 
@@ -18,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->dept_cnt->setText(QString::number(data.departments.size()));
 
     ui->home->addTab(new students_tab, QIcon(""), "Students");
+    ui->home->addTab(new teachers_tab, QIcon(""), "Teachers");
+    ui->home->addTab(new courses_tab, QIcon(""), "Courses");
     ui->home->addTab(new department_tab, QIcon(""), "Departments");
 }
 

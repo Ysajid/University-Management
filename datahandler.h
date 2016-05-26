@@ -5,6 +5,7 @@
 #include <BusinessLogic/student.h>
 #include <BusinessLogic/course.h>
 #include <BusinessLogic/department.h>
+#include <BusinessLogic/teacher.h>
 #include <BusinessLogic/authorization.h>
 #include <QTextStream>
 #include <QMap>
@@ -26,9 +27,10 @@ public:
 
     int type;
 
-    QString student_column;
+    QString students_table;
     QString dept_table;
-    QString course_column;
+    QString courses_table;
+    QString teachers_table;
     QString password_table;
     QString programme_fileName;
     QString generalInfo_fileName;
@@ -56,6 +58,7 @@ public:
 //    QMap <QString , Course*> courses;
     static QMap <int , Department> departments;
     static QMap <QString , Student> students;
+    static QMap <int , Teacher> teachers;
 //    static QMap <QString , Department> courses;
 //    static QMap <QString , Department> teachers;
 
@@ -71,6 +74,10 @@ public:
     void saveData();
 
     bool addNewStudent(int int_id ,QString name, QString father_name , QString address , int dept_id, int year,int semester, QString password);
+    void addNewDepartment(QString name, QString building, int budget);
+    void addNewTeacher(int id, QString name, QString designation, int dept_id, int salary);
+    void addNewCourse(QString id, QString name, int dept_id, int semester, double credit);
+
 
 };
 

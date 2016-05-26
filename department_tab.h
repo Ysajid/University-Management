@@ -2,6 +2,9 @@
 #define DEPARTMENT_TAB_H
 
 #include <QWidget>
+#include "new_department.h"
+#include <QSqlTableModel>
+#include "datahandler.h"
 
 namespace Ui {
 class department_tab;
@@ -10,6 +13,8 @@ class department_tab;
 class department_tab : public QWidget
 {
     Q_OBJECT
+
+    QSqlTableModel *model;
 
 public:
     explicit department_tab(QWidget *parent = 0);

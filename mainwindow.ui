@@ -68,7 +68,7 @@
             <item row="0" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
-               <widget class="QTextEdit" name="student_cnt">
+               <widget class="QTextBrowser" name="student_cnt">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -109,7 +109,7 @@
             <item row="0" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
-               <widget class="QTextEdit" name="dept_cnt">
+               <widget class="QTextBrowser" name="dept_cnt">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -149,7 +149,7 @@
             <item row="1" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
-               <widget class="QTextEdit" name="teacher_cnt">
+               <widget class="QTextBrowser" name="teacher_cnt">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>
@@ -189,7 +189,7 @@
             <item row="1" column="1">
              <layout class="QHBoxLayout" name="horizontalLayout_5">
               <item>
-               <widget class="QTextEdit" name="course_cnt">
+               <widget class="QTextBrowser" name="course_cnt">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                   <horstretch>0</horstretch>

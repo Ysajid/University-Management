@@ -2,6 +2,9 @@
 #define NEW_DEPARTMENT_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include <QString>
+#include "datahandler.h"
 
 namespace Ui {
 class new_department;
@@ -10,6 +13,11 @@ class new_department;
 class new_department : public QDialog
 {
     Q_OBJECT
+
+    int id;
+    QString name;
+    QString building;
+    int budget;
 
 public:
     explicit new_department(QWidget *parent = 0);

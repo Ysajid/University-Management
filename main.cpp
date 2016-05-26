@@ -7,7 +7,8 @@
 #include "ui_information.h"
 #include "BusinessLogic/student.h"
 #include "BusinessLogic/department.h"
-#include "newdepartment.h"
+#include "BusinessLogic/teacher.h"
+#include "BusinessLogic/course.h"
 #include <QDebug>
 #include "BusinessLogic/authorization.h"
 #include "loginscreen.h"
@@ -18,6 +19,7 @@
 
 QMap <int , Department> DataHandler::departments;
 QMap <QString , Student> DataHandler::students;
+QMap <int , Teacher> DataHandler::teachers;
 
  QStringListModel DataHandler::departments_list_model;
  QStringListModel DataHandler::students_list_model;
@@ -41,19 +43,18 @@ QMap <QString , Student> DataHandler::students;
  void operator <<(Department &dept , QSqlQuery query)
  {
 //     dept.dept_id = query.value(0).toInt();
-     dept.dept_name = query.value(1).toString();
-     dept.building = query.value(2).toString();
-     dept.budget = query.value(3).toInt();
+     dept.dept_name = query.value(0).toString();
+     dept.building = query.value(1).toString();
+     dept.budget = query.value(2).toInt();
  }
 
  void operator >>(Department &dept , int notused)
  {
      QSqlQuery query;
-     query.exec("insert into "+DataHandler().dept_table
-                + dept.dept_id
-                + "'" + dept.dept_name + "'"
-                + "'" + dept.building + "'"
-                + dept.budget
+     query.exec("insert into "+DataHandler().dept_table + " values ("
+                + "'" + dept.dept_name + "',"
+                + "'" + dept.building + "',"
+                + QString::number(dept.budget)
                 + ");");
  }
 
@@ -73,27 +74,56 @@ void operator << (Student &student , QSqlQuery query)
 void operator >> (Student &student , int notused)
 {
     QSqlQuery query;
-    query.exec("insert into "+ DataHandler().student_column + " values ("
-               + "'" + student.id + "'"
-               + "'" + student.name + "'"
-               + "'" + student.father_name + "'"
-               + "'" + student.address + "'"
-               +student.course_cnt
-               +student.dept_id
-               +student.semester
-               +student.year
+    query.exec("insert into "+ DataHandler().students_table + " values ("
+               + "'" + student.id + "',"
+               + "'" + student.name + "',"
+               + "'" + student.father_name + "',"
+               + "'" + student.address + "',"
+               +QString::number(student.course_cnt) + ","
+               +QString::number(student.dept_id) + ","
+               +QString::number(student.semester) + ","
+               +QString::number(student.year)
                + ");");
+}
 
-    qDebug() << "insert into "+ DataHandler().student_column + " values ("
-                + "'" + student.id + "'"
-                + "'" + student.name + "'"
-                + "'" + student.father_name + "'"
-                + "'" + student.address + "'"
-                +student.course_cnt
-                +student.dept_id
-                +student.semester
-                +student.year
-                + ");";
+void operator << (Teacher &teacher, QSqlQuery query)
+{
+    teacher.name = query.value(0).toString();
+    teacher.designation = query.value(1).toString();
+    teacher.dept_id = query.value(2).toInt();
+    teacher.salary = query.value(3).toInt();
+}
+
+void operator >> (Teacher &teacher , int notused)
+{
+    QSqlQuery query;
+    query.exec("insert into "+ DataHandler().teachers_table + " values ("
+               + "'" + teacher.name + "',"
+               + "'" + teacher.designation + "',"
+               +QString::number(teacher.dept_id) + ","
+               +QString::number(teacher.salary)
+               + ");");
+}
+
+void operator << (Course &course , QSqlQuery query)
+{
+    course.id = query.value(0).toString();
+    course.name = query.value(1).toString();
+    course.dept_id = query.value(2).toInt();
+    course.semester = query.value(3).toInt();
+    course.credit = query.value(4).toDouble();
+}
+
+void operator >> (Course &course , int notused)
+{
+    QSqlQuery query;
+    query.exec("insert into "+ DataHandler().courses_table + " values ("
+               + "'" + course.id + "',"
+               + "'" + course.name + "',"
+               +QString::number(course.dept_id) + ","
+               +QString::number(course.semester) + ","
+               +QString::number(course.credit)
+               + ");");
 }
 
 

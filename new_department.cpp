@@ -15,5 +15,12 @@ new_department::~new_department()
 
 void new_department::on_buttonBox_accepted()
 {
+    name = ui->name->text();
+    building = ui->building->text();
+    budget = ui->budget->text().toInt();
 
+    if(name == "" || building == "" || budget == 0) QMessageBox::critical(this,"","All value not set");
+    else {
+        DataHandler().addNewDepartment(name,building, budget);
+    }
 }
