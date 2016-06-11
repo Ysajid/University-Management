@@ -8,8 +8,7 @@ Made with Qt 5.6 in c++
 <ul>
 <li>Authorization protocol</li>
 <li>Viewing information of students</li>
-<li>Detail information about courses and departments</li>
-<li>can be seen by the admin</li>
+<li>Detail information about courses and departments <br>can be seen by the admin</li>
 <li>Updating Student and Teacher info by admin</li>
 <li>Adding courses, students and teachers</li>
 </ul>
